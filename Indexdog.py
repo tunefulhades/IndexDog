@@ -7,7 +7,7 @@ def fetch_stock_data(tickerSymbol):
     week = today - timedelta(days=7)
     week_str = week.strftime('%Y-%m-%d')
 
-    # Get data for this ticker
+    # Get data
     tickerData = yf.Ticker(tickerSymbol)
     
     tickerDf = tickerData.history(period='7d', start=week_str, end=today)
@@ -41,19 +41,18 @@ else:
 #gui
 image_element = sg.Image(filename=image_path)
 
-# Define the layout of your GUI using a list of lists
+# Define the layout 
 layout = [
     [image_element],
     [sg.Text(text_data,font=('Helvetica', 15), justification='center')]
 ]
 
-# Create a window object using the sg.Window() method and pass in the layout you defined
+# Create a window object
 window = sg.Window('Index Dog', layout, size=(500, 300), element_justification='center')
 
-# Use a loop to read events from the window and respond to them
 while True:
     event, values = window.read()
     if event == sg.WIN_CLOSED:
         break
-# Close the window when you're done with it
+# Close the window 
 window.close()
